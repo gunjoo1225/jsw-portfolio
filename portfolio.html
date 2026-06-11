@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정성운 | 선임 안전관리자 포트폴리오</title>
+<style>
+  :root {
+    --primary: #1a2e4a;
+    --accent: #f5a623;
+    --light: #f4f7fb;
+    --text: #2c3e50;
+    --gray: #7f8c8d;
+    --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; color: var(--text); background: #f0f2f5; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    background: rgba(26,46,74,0.97); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 60px; box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+  }
+  nav .logo { color: var(--accent); font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul a { color: #cdd9e5; text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+  nav ul a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: url('images/p19_aerial.jpg') center center / cover no-repeat;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(10,25,45,0.88) 0%, rgba(13,40,65,0.82) 60%, rgba(10,25,45,0.90) 100%);
+  }
+  .hero-content { text-align: center; z-index: 1; padding: 20px; }
+  .hero-badge {
+    display: inline-block; background: var(--accent); color: #1a2e4a;
+    padding: 6px 18px; border-radius: 20px; font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 2px; margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900;
+    color: #fff; letter-spacing: 0.1em; line-height: 1.1; margin-bottom: 10px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-title { font-size: clamp(1rem, 2.5vw, 1.4rem); color: #8eb8d8; letter-spacing: 3px; margin-bottom: 30px; }
+  .hero-stats { display: flex; justify-content: center; gap: 40px; margin: 36px 0; flex-wrap: wrap; }
+  .stat-box { text-align: center; border-left: 3px solid var(--accent); padding-left: 16px; }
+  .stat-box .num { font-size: 2.4rem; font-weight: 900; color: var(--accent); line-height: 1; }
+  .stat-box .label { font-size: 0.78rem; color: #8eb8d8; margin-top: 4px; letter-spacing: 1px; }
+  .hero-contact { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 20px; }
+  .hero-contact a {
+    color: #cdd9e5; text-decoration: none; font-size: 0.9rem;
+    display: flex; align-items: center; gap: 6px;
+    border: 1px solid rgba(255,255,255,0.2); padding: 8px 18px; border-radius: 25px;
+    transition: all 0.2s;
+  }
+  .hero-contact a:hover { background: var(--accent); color: #1a2e4a; border-color: var(--accent); }
+  .scroll-hint {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.4); font-size: 0.75rem; text-align: center; animation: bounce 2s infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-8px)} }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 20px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 56px; }
+  .section-header .en { font-size: 0.78rem; color: var(--accent); letter-spacing: 4px; font-weight: 700; margin-bottom: 8px; }
+  .section-header h2 { font-size: 2rem; font-weight: 800; color: var(--primary); }
+  .section-header p { color: var(--gray); margin-top: 10px; font-size: 0.95rem; }
+
+  /* ── ACHIEVEMENTS ── */
+  .achievements { background: var(--primary); }
+  .achievements .section-header h2 { color: #fff; }
+  .achievements .section-header .en { color: var(--accent); }
+  .achievements .section-header p { color: #8eb8d8; }
+  .ach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .ach-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px; padding: 28px 24px; text-align: center; transition: transform 0.2s, background 0.2s;
+  }
+  .ach-card:hover { transform: translateY(-4px); background: rgba(245,166,35,0.12); }
+  .ach-icon { font-size: 2.4rem; margin-bottom: 14px; }
+  .ach-card h3 { font-size: 0.95rem; color: #fff; font-weight: 700; margin-bottom: 6px; }
+  .ach-card p { font-size: 0.82rem; color: #8eb8d8; line-height: 1.6; }
+  .ach-card .highlight { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+
+  /* ── PROJECTS ── */
+  .projects { background: var(--light); }
+  .project-card {
+    background: var(--card); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08); margin-bottom: 36px;
+    display: grid; grid-template-columns: 380px 1fr;
+  }
+  .project-card.reverse { grid-template-columns: 1fr 380px; }
+  .project-img {
+    position: relative; min-height: 300px; overflow: hidden;
+  }
+  .project-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.4s ease;
+  }
+  .project-card:hover .project-img img { transform: scale(1.04); }
+  .project-img .proj-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(13,31,53,0.90) 0%, rgba(13,31,53,0.30) 60%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 24px;
+  }
+  .proj-company {
+    background: var(--accent); color: #1a2e4a; font-size: 0.72rem; font-weight: 700;
+    padding: 4px 12px; border-radius: 12px; letter-spacing: 1px; margin-bottom: 8px;
+    display: inline-block; width: fit-content;
+  }
+  .proj-title { font-size: 1.15rem; font-weight: 800; color: #fff; line-height: 1.4; }
+  .proj-scale { font-size: 0.82rem; color: var(--accent); margin-top: 6px; }
+  .project-body { padding: 36px 40px; }
+  .project-body h3 { font-size: 1.3rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
+  .project-body .period { font-size: 0.82rem; color: var(--gray); margin-bottom: 18px; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .tag { background: #eaf0fb; color: var(--primary); font-size: 0.76rem; padding: 4px 12px; border-radius: 20px; font-weight: 600; }
+  .tag.accent { background: #fff4e0; color: #b87800; }
+  .task-list { list-style: none; }
+  .task-list li {
+    font-size: 0.88rem; color: var(--text); padding: 6px 0;
+    border-bottom: 1px dashed #e8ecf0; display: flex; align-items: flex-start; gap: 8px;
+  }
+  .task-list li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── PHOTO GALLERY ── */
+  .gallery { background: #fff; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 14px;
+  }
+  .gallery-item {
+    position: relative; overflow: hidden; border-radius: 12px;
+    cursor: pointer; background: var(--primary);
+  }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-item.tall { grid-row: span 2; }
+  .gallery-item img {
+    width: 100%; height: 280px; object-fit: cover; display: block;
+    transition: transform 0.4s ease, opacity 0.3s;
+  }
+  .gallery-item.wide img { height: 360px; }
+  .gallery-item:hover img { transform: scale(1.06); opacity: 0.85; }
+  .gallery-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(13,31,53,0.92), transparent);
+    color: #fff; padding: 20px 16px 14px; font-size: 0.82rem; font-weight: 600;
+    transform: translateY(100%); transition: transform 0.3s ease;
+  }
+  .gallery-item:hover .gallery-caption { transform: translateY(0); }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 8px; object-fit: contain; }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 28px; color: #fff; font-size: 2.2rem;
+    cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.2s;
+  }
+  .lightbox-close:hover { opacity: 1; }
+  .lightbox-caption {
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    color: #cdd9e5; font-size: 0.88rem; background: rgba(0,0,0,0.5);
+    padding: 8px 20px; border-radius: 20px;
+  }
+
+  /* ── SKILLS ── */
+  .skills { background: #f8fafc; }
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .skill-card {
+    border: 2px solid #e8ecf0; border-radius: 14px; padding: 28px; background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(245,166,35,0.15); }
+  .skill-card h3 { font-size: 1rem; font-weight: 800; color: var(--primary); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+  .skill-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-item { background: var(--light); color: var(--text); font-size: 0.8rem; padding: 5px 13px; border-radius: 6px; font-weight: 500; }
+
+  /* ── QUALIFICATIONS ── */
+  .qualifications { background: var(--light); }
+  .qual-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .qual-card {
+    background: var(--card); border-radius: 14px; padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-top: 4px solid var(--accent);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .qual-card .qtype { font-size: 0.72rem; color: var(--accent); font-weight: 700; letter-spacing: 2px; }
+  .qual-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--primary); }
+  .qual-card .detail { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
+  .qual-card .issued { font-size: 0.78rem; color: #aaa; margin-top: 4px; }
+
+  /* ── DOCUMENTS ── */
+  .documents { background: var(--primary); }
+  .documents .section-header h2 { color: #fff; }
+  .documents .section-header p { color: #8eb8d8; }
+  .doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+  .doc-item {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 18px 16px; text-align: center; transition: background 0.2s;
+  }
+  .doc-item:hover { background: rgba(245,166,35,0.15); }
+  .doc-item .icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .doc-item p { font-size: 0.8rem; color: #cdd9e5; line-height: 1.5; }
+
+  /* ── CONTACT ── */
+  .contact { background: #fff; }
+  .contact-inner {
+    background: linear-gradient(135deg, var(--primary), #0d2137);
+    border-radius: 20px; padding: 60px 40px; text-align: center; color: #fff;
+  }
+  .contact-inner h2 { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
+  .contact-inner p { color: #8eb8d8; margin-bottom: 36px; }
+  .contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    padding: 14px 28px; border-radius: 10px; color: #fff; text-decoration: none;
+    font-size: 0.95rem; transition: all 0.2s;
+  }
+  .contact-link:hover { background: var(--accent); color: #1a2e4a; border-color: var(--accent); }
+  .contact-link .ci { font-size: 1.3rem; }
+
+  footer {
+    background: #0d1f35; color: rgba(255,255,255,0.35);
+    text-align: center; padding: 20px; font-size: 0.78rem;
+  }
+
+  /* ── FADE-IN ── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 16px; }
+    nav ul { gap: 14px; }
+    .project-card, .project-card.reverse { grid-template-columns: 1fr; }
+    .project-card.reverse .project-img { order: -1; }
+    .project-body { padding: 24px; }
+    .hero-stats { gap: 24px; }
+    .stat-box .num { font-size: 1.8rem; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item.wide { grid-column: span 2; }
+  }
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item.wide { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">SAFETY · 정성운</div>
+  <ul>
+    <li><a href="#about">소개</a></li>
+    <li><a href="#projects">현장경력</a></li>
+    <li><a href="#gallery">현장사진</a></li>
+    <li><a href="#skills">전문역량</a></li>
+    <li><a href="#qualifications">자격/교육</a></li>
+    <li><a href="#documents">보유서류</a></li>
+    <li><a href="#contact">연락처</a></li>
+  </ul>
+</nav>
+
+<!-- HERO — 드론 항공사진 배경 -->
+<section class="hero" id="about">
+  <div class="hero-content">
+    <div class="hero-badge">SENIOR SAFETY MANAGER</div>
+    <h1>정 <span>성</span> 운</h1>
+    <div class="hero-title">선임 안전관리자 · 산업안전기사</div>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="num">4년+</div>
+        <div class="label">중대재해 ZERO<br>연속 달성</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">134명</div>
+        <div class="label">일평균 근로자<br>안전관리</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">SA1</div>
+        <div class="label">건설안전관리<br>최고등급 현장</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">삼성</div>
+        <div class="label">그룹 발주현장<br>인증 수행 가능</div>
+      </div>
+    </div>
+    <div class="hero-contact">
+      <a href="tel:010-5855-5282">📞 010-5855-5282</a>
+      <a href="mailto:jsutal@naver.com">✉️ jsutal@naver.com</a>
+    </div>
+  </div>
+  <div class="scroll-hint">▼ 스크롤</div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements fade-in">
+  <div class="container">
+    <div class="section-header">
+      <div class="en">KEY ACHIEVEMENTS</div>
+      <h2>핵심 성과 & 특장점</h2>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-card"><div class="ach-icon">🏆</div><h3>중대재해 ZERO 달성</h3><p><span class="highlight">4년 연속</span> 중대산업재해 무재해<br>무재해 공사 완료 이력</p></div>
+      <div class="ach-card"><div class="ach-icon">⭐</div><h3>건설안전관리 SA1등급</h3><p>나이스디앤비 <span class="highlight">최고등급</span><br>취득 공사현장 안전관리 수행</p></div>
+      <div class="ach-card"><div class="ach-icon">🏗️</div><h3>삼성그룹 발주현장</h3><p>삼성물산인증제 수행가능<br><span class="highlight">삼성E&A</span> 협력현장 안전관리</p></div>
+      <div class="ach-card"><div class="ach-icon">📋</div><h3>ISO 인증 대응</h3><p>ISO <span class="highlight">45001 · 9001</span><br>현장접검 대응 완료</p></div>
+      <div class="ach-card"><div class="ach-icon">📣</div><h3>CEO 안전캠페인</h3><p><span class="highlight">2026년</span> CEO 안전캠페인<br>실시현장 선정·운영</p></div>
+      <div class="ach-card"><div class="ach-icon">🔬</div><h3>글로벌 GMP 기준 현장</h3><p>바이오의약품 저장시설<br><span class="highlight">GMP 환경</span> 안전관리 경험</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects fade-in" id="projects">
+  <div class="container">
+    <div class="section-header">
+      <div class="en">PROJECT EXPERIENCE</div>
+      <h2>현장 경력</h2>
+      <p>대형 건설·플랜트 현장에서 안전관리를 주도적으로 수행한 이력</p>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="project-card fade-in">
+      <div class="project-img">
+        <img src="images/p2_site2.jpg" alt="목동KT 해체공사 중장비 작업" style="object-position: center 40%;">
+        <div class="proj-overlay">
+          <div class="proj-company">은하수산업(주) · 목동KT</div>
+          <div class="proj-title">목동KT 해체 / 토목 공사</div>
+          <div class="proj-scale">3,200평 | 지하 B1~B4</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <h3>목동KT 해체·토목 공사</h3>
+        <div class="period">📍 서울 양천구 목동 924외 2필지 (목동KT타워) 지하층 해체공사</div>
+        <div class="tag-list">
+          <span class="tag">해체공사</span><span class="tag">토목공사</span>
+          <span class="tag">지하 B1~B4</span>
+          <span class="tag accent">SA1등급 현장</span>
+          <span class="tag accent">CEO 안전캠페인</span>
+          <span class="tag">ISO 45001 · 9001</span>
+        </div>
+        <ul class="task-list">
+          <li>굴착기해체·크레인·크람쉘 양중작업 계획 수립 및 안전감독</li>
+          <li>토목공사 추락·붕괴예방 작업계획서 작성 및 이행점검</li>
+          <li>중장비 배치 및 안전감시자 Daily Check Sheet 운영</li>
+          <li>공종별 작업허가서 발행·근로자 교육·서명확인 시스템 운영</li>
+          <li>일평균 134명 근로자 TBM(Tool Box Meeting) 실시</li>
+          <li>사고 발생 시 원인분석 · 3Why · 재발방지대책 수립 및 보고</li>
+          <li>산업안전보건관리비 예산 편성·집행·정산 관리</li>
+          <li>건설안전관리 SA1등급 취득 현장 (나이스디앤비) 관리 수행</li>
+          <li>2026년 CEO 안전캠페인 실시현장 운영</li>
+          <li>ISO 45001 · ISO 9001 현장접검 대응</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card reverse fade-in">
+      <div class="project-body">
+        <h3>송도 삼성바이오로직스 P5 MS동<br>극저온 냉동창고 PLANT 공사</h3>
+        <div class="period">📍 인천 송도 | 삼성E&A 발주 | 삼성물산인증제 현장</div>
+        <div class="tag-list">
+          <span class="tag">PLANT공사</span>
+          <span class="tag">극저온(-70℃~-20℃)</span>
+          <span class="tag">글로벌 GMP</span>
+          <span class="tag accent">삼성E&A</span>
+          <span class="tag accent">삼성물산인증제</span>
+          <span class="tag">밀폐공간 작업허가</span>
+        </div>
+        <ul class="task-list">
+          <li>글로벌 GMP 기준 적용 바이오의약품 저장시설 안전관리</li>
+          <li>-70℃~-20℃ 초저온 냉동창고 다공종 혼재작업 위험성 평가</li>
+          <li>밀폐공간 작업허가 운영 (천정작업 포함)</li>
+          <li>S-PCM 서류작성 및 현장안전관리 주도적 수행</li>
+          <li>삼성E&A 안전관리 기준 준수 및 무재해 공사 완료</li>
+        </ul>
+      </div>
+      <div class="project-img">
+        <img src="images/p1_plant.jpg" alt="삼성바이오로직스 냉동창고 PLANT공사" style="object-position: center 60%;">
+        <div class="proj-overlay">
+          <div class="proj-company">삼성E&A 발주 · 삼성바이오로직스</div>
+          <div class="proj-title">송도 P5 MS동<br>극저온 냉동창고 PLANT</div>
+          <div class="proj-scale">-70℃~-20℃ 초저온 설비</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery fade-in" id="gallery">
+  <div class="container">
+    <div class="section-header">
+      <div class="en">SITE PHOTOS</div>
+      <h2>현장 사진</h2>
+      <p>실제 관리 현장의 기록 사진</p>
+    </div>
+    <div class="gallery-grid">
+
+      <!-- 1. 항공 드론샷 — 와이드 -->
+      <div class="gallery-item wide"
+           onclick="openLightbox('images/p19_aerial.jpg','목동KT 해체공사 — 드론 항공 전경 (지하 B1~B4 해체 진행 중, 3,200평)')">
+        <img src="images/p19_aerial.jpg" alt="목동KT 해체공사 드론 항공사진" style="object-position: center 30%;">
+        <div class="gallery-caption">목동KT 해체공사 — 드론 항공 전경 (3,200평)</div>
+      </div>
+
+      <!-- 2. 지하층 철근·토목 공사 -->
+      <div class="gallery-item"
+           onclick="openLightbox('images/p2_rebar.jpg','지하층 토목공사 — 흙막이·철근 작업 및 크레인 양중 안전관리')">
+        <img src="images/p2_rebar.jpg" alt="지하층 토목 철근 공사" style="object-position: center 50%;">
+        <div class="gallery-caption">지하층 토목공사 — 흙막이·철근 작업</div>
+      </div>
+
+      <!-- 3. 중장비 복합작업 현장 -->
+      <div class="gallery-item"
+           onclick="openLightbox('images/p2_site2.jpg','목동KT 해체공사 — 굴착기·크레인 복합 중장비 작업 안전관리')">
+        <img src="images/p2_site2.jpg" alt="중장비 복합 작업 현장" style="object-position: center 40%;">
+        <div class="gallery-caption">중장비 복합작업 — 굴착기·크레인 안전감독</div>
+      </div>
+
+      <!-- 4. CEO 안전캠페인 현수막 -->
+      <div class="gallery-item"
+           onclick="openLightbox('images/p19_banner.jpg','CEO 안전캠페인 현장 — 국토교통부 건설현장 추락사고 예방 릴레이 캠페인')">
+        <img src="images/p19_banner.jpg" alt="CEO 안전캠페인 현수막" style="object-position: center 55%;">
+        <div class="gallery-caption">2026 CEO 안전캠페인 실시현장</div>
+      </div>
+
+      <!-- 5. TBM 안전점검회의 — 와이드 -->
+      <div class="gallery-item wide"
+           onclick="openLightbox('images/p5_tbm.jpg','TBM 안전점검회의 — 작업 전 안전교육·개인보호구 점검·공지사항 전달·팀별 작업지시')">
+        <img src="images/p5_tbm.jpg" alt="TBM 안전점검회의 현장" style="object-position: center 45%;">
+        <div class="gallery-caption">TBM 안전점검회의 — 지하층 해체공사(B1~B4) 작업 전 안전교육</div>
+      </div>
+
+      <!-- 6. 삼성바이오 냉동창고 PLANT -->
+      <div class="gallery-item"
+           onclick="openLightbox('images/p1_plant.jpg','송도 삼성바이오로직스 P5 MS동 — 극저온 냉동창고(-70℃~-20℃) PLANT공사 현장')">
+        <img src="images/p1_plant.jpg" alt="삼성바이오로직스 냉동창고 PLANT공사" style="object-position: center 40%;">
+        <div class="gallery-caption">삼성바이오로직스 P5 — 극저온 냉동창고 PLANT공사</div>
+      </div>
+
+      <!-- 7. 품질안전공정회의 -->
+      <div class="gallery-item"
+           onclick="openLightbox('images/site_meeting1.jpg','품질안전공정회의 Daily 실시 — 현장소장·안전관리자·협력사 합동 회의 (수기작성)')">
+        <img src="images/site_meeting1.jpg" alt="품질안전공정회의" style="object-position: center 30%;">
+        <div class="gallery-caption">품질안전공정회의 Daily 실시</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-cap"></div>
+</div>
+
+<!-- SKILLS -->
+<section class="skills fade-in" id="skills">
+  <div class="container">
+    <div class="section-header">
+      <div class="en">COMPETENCIES</div>
+      <h2>전문 역량</h2>
+      <p>건설·플랜트 현장에서 직접 수행한 안전관리 업무 영역</p>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card"><h3>📊 위험성 평가</h3><div class="skill-items"><span class="skill-item">상시 위험성평가</span><span class="skill-item">수시 위험성평가</span><span class="skill-item">HAZARD 도출</span><span class="skill-item">토사 되메움 평가</span><span class="skill-item">다공종 혼재작업</span><span class="skill-item">위험성 감소대책</span></div></div>
+      <div class="skill-card"><h3>📄 작업허가 관리</h3><div class="skill-items"><span class="skill-item">밀폐공간 작업허가</span><span class="skill-item">고소작업 허가</span><span class="skill-item">화기작업 허가</span><span class="skill-item">가시설 작업허가</span><span class="skill-item">가스설비 작업허가</span><span class="skill-item">LOTO 절차</span></div></div>
+      <div class="skill-card"><h3>🏗️ 중장비 안전관리</h3><div class="skill-items"><span class="skill-item">굴착기 해체작업</span><span class="skill-item">크레인 양중계획</span><span class="skill-item">크람쉘 작업계획</span><span class="skill-item">일일장비 점검</span><span class="skill-item">안전감시자 배치</span><span class="skill-item">인양공도구 점검</span></div></div>
+      <div class="skill-card"><h3>📚 안전보건 서류</h3><div class="skill-items"><span class="skill-item">산업안전보건관리비</span><span class="skill-item">안전관리계획서</span><span class="skill-item">유해위험방지계획</span><span class="skill-item">해체계획서</span><span class="skill-item">MSDS 관리</span><span class="skill-item">비상대피 메뉴얼</span><span class="skill-item">TBM 실시·기록</span><span class="skill-item">일일안전보건일지</span></div></div>
+      <div class="skill-card"><h3>👷 근로자 관리</h3><div class="skill-items"><span class="skill-item">신규 채용자 교육</span><span class="skill-item">관리감독자 교육</span><span class="skill-item">배치전·후 건강진단</span><span class="skill-item">근로자 건강문진</span><span class="skill-item">노사협의체 운영</span><span class="skill-item">무재해 서명확인</span></div></div>
+      <div class="skill-card"><h3>🚨 사고 대응</h3><div class="skill-items"><span class="skill-item">사고경위서 작성</span><span class="skill-item">3Why 원인분석</span><span class="skill-item">재발방지대책 수립</span><span class="skill-item">협력사 대책 관리</span><span class="skill-item">비상대응 훈련</span></div></div>
+      <div class="skill-card"><h3>🔧 추락·붕괴 예방</h3><div class="skill-items"><span class="skill-item">시스템비계 관리</span><span class="skill-item">말비계 관리</span><span class="skill-item">안전시설물 설치</span><span class="skill-item">단부·개구부 방호</span><span class="skill-item">안전블럭 체결확인</span></div></div>
+      <div class="skill-card"><h3>📐 인증·감사 대응</h3><div class="skill-items"><span class="skill-item">ISO 45001</span><span class="skill-item">ISO 9001</span><span class="skill-item">SA1등급 취득</span><span class="skill-item">삼성물산인증제</span><span class="skill-item">S-PCM 서류</span><span class="skill-item">안전감사 대응</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALIFICATIONS -->
+<section class="qualifications fade-in" id="qualifications">
+  <div class="container">
+    <div class="section-header">
+      <div class="en">CERTIFICATIONS & EDUCATION</div>
+      <h2>자격 & 교육</h2>
+    </div>
+    <div class="qual-grid">
+      <div class="qual-card"><div class="qtype">국가기술자격 · 고용노동부</div><h3>산업안전기사</h3><div class="detail">자격번호: 22220071194F<br>한국산업인력공단 이사장 발급<br>기술등급: 안전 초급</div><div class="issued">취득: 2022.09.02 | 갱신: 2025.04.08</div></div>
+      <div class="qual-card"><div class="qtype">안전관리자 선임</div><h3>안전관리자 선임계</h3><div class="detail">양천구 목동 924외 2필지<br>(목동KT타워) 지하층 해체공사<br>은하수산업(주) 대표이사 선임</div><div class="issued">선임일: 2025.05.20</div></div>
+      <div class="qual-card"><div class="qtype">안전보건교육 이수증</div><h3>안전관리자 신규교육<br>(건설업·집체교육)</h3><div class="detail">중대안전보건예방협회 협회장 발급<br>교육기간: 2025.06.16 ~ 06.20<br>교육시간: 34시간</div><div class="issued">수료: 2025.06.20</div></div>
+      <div class="qual-card"><div class="qtype">현장 인증</div><h3>삼성물산인증제</h3><div class="detail">삼성그룹 발주현장 수행 자격<br>삼성E&A 협력현장 안전관리 수행<br>글로벌 GMP 기준 현장 적용</div><div class="issued">삼성바이오로직스 P5 MS동 현장</div></div>
+      <div class="qual-card"><div class="qtype">건설안전관리 등급</div><h3>SA1등급 취득 현장</h3><div class="detail">나이스디앤비 평가 최고등급<br>건설안전관리 체계 최고 수준 인정<br>목동KT 해체공사 현장 취득</div><div class="issued">2026년</div></div>
+      <div class="qual-card"><div class="qtype">관리감독자 교육</div><h3>관리감독자 정기교육</h3><div class="detail">월별 관리감독자 정기교육 실시<br>교육결과보고서 작성·제출<br>현장 전 근로자 교육 관리</div><div class="issued">정기 실시 (월별)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTS -->
+<section class="documents fade-in" id="documents">
+  <div class="container">
+    <div class="section-header">
+      <div class="en">SAFETY DOCUMENTS</div>
+      <h2>보유 안전보건서류</h2>
+      <p>현장에서 직접 작성·관리한 산업안전보건 문서 목록</p>
+    </div>
+    <div class="doc-grid">
+      <div class="doc-item"><div class="icon">📋</div><p>안전관리계획서</p></div>
+      <div class="doc-item"><div class="icon">⚠️</div><p>유해위험방지계획서</p></div>
+      <div class="doc-item"><div class="icon">🔨</div><p>해체계획서</p></div>
+      <div class="doc-item"><div class="icon">📊</div><p>위험성평가표<br>(상시/수시)</p></div>
+      <div class="doc-item"><div class="icon">🚧</div><p>작업계획서<br>(공종별)</p></div>
+      <div class="doc-item"><div class="icon">🔑</div><p>작업허가서<br>(Permit to Work)</p></div>
+      <div class="doc-item"><div class="icon">📅</div><p>일일안전보건일지<br>/ TBM</p></div>
+      <div class="doc-item"><div class="icon">🏗️</div><p>중장비 일일<br>점검체크시트</p></div>
+      <div class="doc-item"><div class="icon">💊</div><p>물질안전보건<br>자료(MSDS)</p></div>
+      <div class="doc-item"><div class="icon">🔥</div><p>위험물 관리대장</p></div>
+      <div class="doc-item"><div class="icon">🏃</div><p>비상대피 메뉴얼</p></div>
+      <div class="doc-item"><div class="icon">🩺</div><p>근로자 건강문진<br>및 질병이력</p></div>
+      <div class="doc-item"><div class="icon">📝</div><p>관리감독자 지정서</p></div>
+      <div class="doc-item"><div class="icon">🤝</div><p>노사협의체 서류</p></div>
+      <div class="doc-item"><div class="icon">💰</div><p>산업안전보건<br>관리비 집행내역</p></div>
+      <div class="doc-item"><div class="icon">📰</div><p>사고경위서 &<br>재발방지대책</p></div>
+      <div class="doc-item"><div class="icon">✅</div><p>안전점검 결과표<br>(동절기/월별)</p></div>
+      <div class="doc-item"><div class="icon">🎓</div><p>안전교육<br>결과보고서</p></div>
+      <div class="doc-item"><div class="icon">📁</div><p>품질안전공정<br>회의록</p></div>
+      <div class="doc-item"><div class="icon">🏥</div><p>배치전/후<br>건강진단 결과</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact fade-in" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <h2>채용 문의 환영합니다</h2>
+      <p>중대재해 ZERO를 목표로, 현장 안전을 주도적으로 이끌겠습니다.</p>
+      <div class="contact-links">
+        <a href="tel:010-5855-5282" class="contact-link"><span class="ci">📞</span><span>010-5855-5282</span></a>
+        <a href="mailto:jsutal@naver.com" class="contact-link"><span class="ci">✉️</span><span>jsutal@naver.com</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 정성운 · 선임 안전관리자 포트폴리오 · jsutal@naver.com</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav ul a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.getAttribute('id'); });
+    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? '#f5a623' : ''; });
+  });
+
+  // Lightbox
+  function openLightbox(src, caption) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-cap').textContent = caption;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox({target: document.getElementById('lightbox')}); });
+</script>
+</body>
+</html>

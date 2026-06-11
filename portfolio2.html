@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정성운 | 선임 안전관리자 포트폴리오</title>
+<style>
+  :root {
+    --primary:  #1a2e4a;
+    --accent:   #f5a623;
+    --accent2:  #e8a020;
+    --light:    #f4f7fb;
+    --text:     #2c3e50;
+    --gray:     #7f8c8d;
+    --sidebar:  72px;
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { font-size:16px; }
+  body {
+    font-family:'Malgun Gothic','맑은 고딕',sans-serif;
+    color:var(--text);
+    display:flex;
+    height:100vh; overflow:hidden;
+  }
+
+  /* ══════════════════════════════
+     SIDEBAR
+  ══════════════════════════════ */
+  aside {
+    width: var(--sidebar);
+    height: 100vh;
+    background: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    position: fixed; left:0; top:0; z-index:100;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.25);
+    flex-shrink: 0;
+  }
+
+  .sidebar-logo {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    user-select: none;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    list-style: none;
+  }
+
+  .sidebar-nav li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 0;
+    width: var(--sidebar);
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+    transition: color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .sidebar-nav li a .ico { font-size: 1.25rem; line-height: 1; }
+  .sidebar-nav li a:hover { color: #fff; background: rgba(255,255,255,0.07); }
+  .sidebar-nav li a.active {
+    color: var(--accent);
+    background: rgba(245,166,35,0.12);
+  }
+  .sidebar-nav li a.active::before {
+    content:'';
+    position:absolute; left:0; top:50%; transform:translateY(-50%);
+    width:3px; height:60%; background:var(--accent); border-radius:0 3px 3px 0;
+  }
+
+  .sidebar-contact {
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+  }
+  .sidebar-contact a {
+    color: rgba(255,255,255,0.4);
+    font-size:1.1rem; text-decoration:none; transition:color 0.2s;
+  }
+  .sidebar-contact a:hover { color: var(--accent); }
+
+  /* ══════════════════════════════
+     MAIN SCROLL CONTAINER
+  ══════════════════════════════ */
+  main {
+    margin-left: var(--sidebar);
+    width: calc(100% - var(--sidebar));
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  /* ══════════════════════════════
+     EACH PAGE SECTION
+  ══════════════════════════════ */
+  .page {
+    width: 100%;
+    min-height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* page indicator dots */
+  .page-num {
+    position:absolute; bottom:20px; right:24px;
+    font-size:0.72rem; color:rgba(255,255,255,0.35);
+    letter-spacing:1px; z-index:10;
+  }
+  .page-num.dark { color: rgba(0,0,0,0.2); }
+
+  /* ══════════════════════════════
+     PAGE 1 — HERO
+  ══════════════════════════════ */
+  #p-hero {
+    background: url('images/p19_aerial.jpg') center 30% / cover no-repeat;
+    justify-content: center; align-items: center;
+  }
+  #p-hero::before {
+    content:''; position:absolute; inset:0;
+    background: linear-gradient(150deg, rgba(8,20,40,0.90) 0%, rgba(12,35,60,0.82) 55%, rgba(8,20,40,0.88) 100%);
+  }
+  .hero-inner { z-index:1; text-align:center; padding:0 40px; }
+  .hero-badge {
+    display:inline-block; background:var(--accent); color:#1a2e4a;
+    padding:5px 18px; border-radius:20px; font-size:0.75rem; font-weight:800;
+    letter-spacing:3px; margin-bottom:18px;
+  }
+  .hero-inner h1 {
+    font-size: clamp(3rem,7vw,5.5rem); font-weight:900;
+    color:#fff; letter-spacing:0.12em; line-height:1.05; margin-bottom:8px;
+  }
+  .hero-inner h1 span { color:var(--accent); }
+  .hero-sub { font-size:clamp(0.95rem,2vw,1.3rem); color:#8eb8d8; letter-spacing:4px; margin-bottom:36px; }
+  .hero-kpis {
+    display:flex; justify-content:center; gap:44px; flex-wrap:wrap; margin-bottom:36px;
+  }
+  .kpi { text-align:center; border-left:3px solid var(--accent); padding-left:16px; }
+  .kpi .num { font-size:2.6rem; font-weight:900; color:var(--accent); line-height:1; }
+  .kpi .lbl { font-size:0.72rem; color:#8eb8d8; margin-top:4px; letter-spacing:1px; line-height:1.5; }
+  .hero-cta { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+  .hero-cta a {
+    color:#cdd9e5; text-decoration:none; font-size:0.88rem;
+    display:flex; align-items:center; gap:6px;
+    border:1px solid rgba(255,255,255,0.2); padding:9px 20px; border-radius:25px;
+    transition:all 0.2s;
+  }
+  .hero-cta a:hover { background:var(--accent); color:#1a2e4a; border-color:var(--accent); }
+  .scroll-arrow {
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    color:rgba(255,255,255,0.35); font-size:1.4rem;
+    animation: arrowBounce 2s infinite;
+    cursor:pointer; z-index:1;
+  }
+  @keyframes arrowBounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  /* ══════════════════════════════
+     PAGE 2 — ACHIEVEMENTS
+  ══════════════════════════════ */
+  #p-ach {
+    background: var(--primary);
+    justify-content:center; align-items:center;
+    padding: 60px 60px;
+  }
+  .ach-header { text-align:center; margin-bottom:44px; }
+  .ach-header .en { font-size:0.72rem; color:var(--accent); letter-spacing:5px; font-weight:700; margin-bottom:8px; }
+  .ach-header h2 { font-size:1.9rem; font-weight:800; color:#fff; }
+  .ach-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+    width:100%; max-width:960px;
+  }
+  .ach-card {
+    background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12);
+    border-radius:14px; padding:26px 22px; text-align:center;
+    transition:transform 0.2s, background 0.2s;
+  }
+  .ach-card:hover { transform:translateY(-4px); background:rgba(245,166,35,0.12); }
+  .ach-icon { font-size:2.2rem; margin-bottom:12px; }
+  .ach-card h3 { font-size:0.92rem; color:#fff; font-weight:700; margin-bottom:6px; }
+  .ach-card p { font-size:0.79rem; color:#8eb8d8; line-height:1.7; }
+  .ach-card .hi { color:var(--accent); font-weight:700; font-size:1.05rem; }
+
+  /* ══════════════════════════════
+     PAGE 3 — PROJECT 1
+  ══════════════════════════════ */
+  #p-proj1 {
+    display:grid; grid-template-columns:1fr 1fr;
+  }
+  .proj-photo {
+    position:relative; overflow:hidden;
+  }
+  .proj-photo img {
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 6s ease;
+  }
+  #p-proj1:hover .proj-photo img { transform:scale(1.05); }
+  .proj-photo-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(to right, rgba(13,31,53,0.6), transparent 70%);
+    display:flex; flex-direction:column; justify-content:flex-end; padding:40px 36px;
+  }
+  .proj-badge {
+    background:var(--accent); color:#1a2e4a; font-size:0.7rem; font-weight:800;
+    padding:4px 12px; border-radius:10px; letter-spacing:1px;
+    display:inline-block; margin-bottom:10px; width:fit-content;
+  }
+  .proj-photo-overlay h2 {
+    font-size:1.6rem; font-weight:900; color:#fff; line-height:1.3; margin-bottom:6px;
+  }
+  .proj-photo-overlay .scale { font-size:0.82rem; color:var(--accent); }
+  .proj-content {
+    background:#fff; overflow-y:auto;
+    padding:50px 48px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .proj-content h3 { font-size:1.25rem; font-weight:800; color:var(--primary); margin-bottom:6px; }
+  .proj-location { font-size:0.8rem; color:var(--gray); margin-bottom:18px; }
+  .tag-row { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:20px; }
+  .tag {
+    background:#eaf0fb; color:var(--primary); font-size:0.73rem;
+    padding:4px 11px; border-radius:18px; font-weight:600;
+  }
+  .tag.gold { background:#fff4e0; color:#b87800; }
+  .chklist { list-style:none; }
+  .chklist li {
+    font-size:0.85rem; color:var(--text); padding:6px 0;
+    border-bottom:1px dashed #e8ecf0;
+    display:flex; align-items:flex-start; gap:8px;
+  }
+  .chklist li::before { content:'✓'; color:var(--accent); font-weight:700; flex-shrink:0; margin-top:1px; }
+
+  /* ══════════════════════════════
+     PAGE 4 — PROJECT 2
+  ══════════════════════════════ */
+  #p-proj2 {
+    display:grid; grid-template-columns:1fr 1fr;
+  }
+  #p-proj2 .proj-content { order:1; background:var(--light); }
+  #p-proj2 .proj-photo  { order:2; }
+  #p-proj2 .proj-photo-overlay {
+    background:linear-gradient(to left, rgba(13,31,53,0.6), transparent 70%);
+    align-items:flex-end; text-align:right;
+  }
+  #p-proj2 .proj-badge { margin-left:auto; }
+
+  /* ══════════════════════════════
+     PAGE 5 — GALLERY
+  ══════════════════════════════ */
+  #p-gallery {
+    background:#111820;
+    display:flex; flex-direction:column;
+    padding: 50px 50px 40px;
+    gap:16px;
+  }
+  .gal-header { text-align:center; }
+  .gal-header .en { font-size:0.72rem; color:var(--accent); letter-spacing:5px; font-weight:700; margin-bottom:6px; }
+  .gal-header h2 { font-size:1.8rem; font-weight:800; color:#fff; margin-bottom:0; }
+  .gal-grid {
+    flex:1; display:grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap:10px;
+    min-height:0;
+  }
+  .gi {
+    position:relative; overflow:hidden; border-radius:10px;
+    cursor:pointer; background:var(--primary);
+  }
+  .gi.span2r { grid-row: span 2; }
+  .gi img {
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 0.4s ease, opacity 0.3s;
+  }
+  .gi:hover img { transform:scale(1.06); opacity:0.8; }
+  .gi-cap {
+    position:absolute; bottom:0; left:0; right:0;
+    background:linear-gradient(to top, rgba(13,31,53,0.93), transparent);
+    color:#fff; padding:18px 14px 12px; font-size:0.78rem; font-weight:600;
+    transform:translateY(100%); transition:transform 0.3s;
+  }
+  .gi:hover .gi-cap { transform:translateY(0); }
+
+  /* ══════════════════════════════
+     PAGE 6 — SKILLS
+  ══════════════════════════════ */
+  #p-skills {
+    background:var(--light);
+    padding:50px 60px;
+    display:flex; flex-direction:column; justify-content:center; gap:36px;
+  }
+  .sk-header { text-align:center; }
+  .sk-header .en { font-size:0.72rem; color:var(--accent); letter-spacing:5px; font-weight:700; margin-bottom:6px; }
+  .sk-header h2 { font-size:1.9rem; font-weight:800; color:var(--primary); }
+  .sk-grid {
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  }
+  .sk-card {
+    background:#fff; border:2px solid #e8ecf0; border-radius:12px;
+    padding:20px 18px; transition:border-color 0.2s, box-shadow 0.2s;
+  }
+  .sk-card:hover { border-color:var(--accent); box-shadow:0 4px 16px rgba(245,166,35,0.15); }
+  .sk-card h4 { font-size:0.85rem; font-weight:800; color:var(--primary); margin-bottom:12px; }
+  .sk-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .sk-tag {
+    background:var(--light); color:var(--text);
+    font-size:0.72rem; padding:4px 9px; border-radius:5px; font-weight:500;
+  }
+
+  /* ══════════════════════════════
+     PAGE 7 — QUALIFICATIONS
+  ══════════════════════════════ */
+  #p-qual {
+    background:#fff;
+    padding:50px 60px;
+    display:flex; flex-direction:column; justify-content:center; gap:36px;
+  }
+  .ql-header { text-align:center; }
+  .ql-header .en { font-size:0.72rem; color:var(--accent); letter-spacing:5px; font-weight:700; margin-bottom:6px; }
+  .ql-header h2 { font-size:1.9rem; font-weight:800; color:var(--primary); }
+  .ql-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .ql-card {
+    border-top:4px solid var(--accent); border-radius:12px;
+    padding:24px; background:#fff; box-shadow:0 2px 12px rgba(0,0,0,0.07);
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .ql-card .qtype { font-size:0.68rem; color:var(--accent); font-weight:700; letter-spacing:2px; }
+  .ql-card h4 { font-size:0.98rem; font-weight:800; color:var(--primary); line-height:1.4; }
+  .ql-card p  { font-size:0.8rem; color:var(--gray); line-height:1.7; }
+  .ql-card .issued { font-size:0.74rem; color:#bbb; margin-top:2px; }
+
+  /* ══════════════════════════════
+     PAGE 8 — DOCUMENTS
+  ══════════════════════════════ */
+  #p-docs {
+    background:var(--primary);
+    padding:50px 60px;
+    display:flex; flex-direction:column; justify-content:center; gap:36px;
+  }
+  .dc-header { text-align:center; }
+  .dc-header .en { font-size:0.72rem; color:var(--accent); letter-spacing:5px; font-weight:700; margin-bottom:6px; }
+  .dc-header h2 { font-size:1.9rem; font-weight:800; color:#fff; }
+  .dc-header p { font-size:0.88rem; color:#8eb8d8; margin-top:6px; }
+  .dc-grid {
+    display:grid; grid-template-columns:repeat(5,1fr); gap:12px;
+  }
+  .dc-item {
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);
+    border-radius:10px; padding:16px 12px; text-align:center; transition:background 0.2s;
+  }
+  .dc-item:hover { background:rgba(245,166,35,0.15); }
+  .dc-item .ico { font-size:1.7rem; margin-bottom:7px; }
+  .dc-item p { font-size:0.75rem; color:#cdd9e5; line-height:1.5; }
+
+  /* ══════════════════════════════
+     PAGE 9 — CONTACT
+  ══════════════════════════════ */
+  #p-contact {
+    background: url('images/p2_rebar.jpg') center center / cover no-repeat;
+    justify-content:center; align-items:center;
+  }
+  #p-contact::before {
+    content:''; position:absolute; inset:0;
+    background:rgba(8,20,38,0.88);
+  }
+  .ct-inner {
+    z-index:1; text-align:center; padding:40px;
+    max-width:640px; margin:0 auto;
+  }
+  .ct-inner h2 { font-size:2.2rem; font-weight:800; color:#fff; margin-bottom:12px; }
+  .ct-inner p  { color:#8eb8d8; margin-bottom:40px; font-size:1rem; line-height:1.8; }
+  .ct-links { display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
+  .ct-link {
+    display:flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
+    padding:14px 30px; border-radius:10px; color:#fff; text-decoration:none;
+    font-size:0.95rem; transition:all 0.2s;
+  }
+  .ct-link:hover { background:var(--accent); color:#1a2e4a; border-color:var(--accent); }
+  .ct-link .ci { font-size:1.3rem; }
+  .ct-copy {
+    margin-top:48px; font-size:0.75rem; color:rgba(255,255,255,0.25);
+  }
+
+  /* ══════════════════════════════
+     LIGHTBOX
+  ══════════════════════════════ */
+  .lightbox {
+    display:none; position:fixed; inset:0; z-index:9999;
+    background:rgba(0,0,0,0.93);
+    align-items:center; justify-content:center;
+  }
+  .lightbox.open { display:flex; }
+  .lightbox img { max-width:90vw; max-height:88vh; border-radius:8px; object-fit:contain; }
+  .lb-close {
+    position:absolute; top:20px; right:26px; color:#fff; font-size:2.2rem;
+    cursor:pointer; opacity:0.65; transition:opacity 0.2s; line-height:1;
+  }
+  .lb-close:hover { opacity:1; }
+  .lb-cap {
+    position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
+    color:#cdd9e5; font-size:0.84rem; background:rgba(0,0,0,0.55);
+    padding:7px 20px; border-radius:20px; white-space:nowrap;
+  }
+
+  /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
+  @media (max-width:900px) {
+    :root { --sidebar:56px; }
+    #p-proj1, #p-proj2 { grid-template-columns:1fr; }
+    #p-proj2 .proj-photo { order:-1; height:260px; }
+    #p-proj1 .proj-photo { height:260px; }
+    .ach-grid { grid-template-columns:repeat(2,1fr); }
+    .sk-grid   { grid-template-columns:repeat(2,1fr); }
+    .ql-grid   { grid-template-columns:repeat(2,1fr); }
+    .dc-grid   { grid-template-columns:repeat(3,1fr); }
+    .gal-grid  {
+      grid-template-columns:1fr 1fr;
+      grid-template-rows: repeat(3,1fr);
+    }
+    .gi.span2r { grid-row:span 1; }
+  }
+  @media (max-width:600px) {
+    aside { display:none; }
+    main  { margin-left:0; width:100%; }
+    .ach-grid,.sk-grid,.ql-grid,.dc-grid { grid-template-columns:1fr 1fr; }
+    .gal-grid { grid-template-columns:1fr; }
+    #p-ach,#p-skills,#p-qual,#p-docs { padding:40px 24px; }
+    #p-gallery { padding:40px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ SIDEBAR ══ -->
+<aside>
+  <div class="sidebar-logo">SAFETY · 정성운</div>
+
+  <ul class="sidebar-nav">
+    <li><a href="#p-hero"    class="active"><span class="ico">🏠</span>소개</a></li>
+    <li><a href="#p-ach"            ><span class="ico">🏆</span>성과</a></li>
+    <li><a href="#p-proj1"          ><span class="ico">🏗️</span>현장1</a></li>
+    <li><a href="#p-proj2"          ><span class="ico">🔬</span>현장2</a></li>
+    <li><a href="#p-gallery"        ><span class="ico">📷</span>사진</a></li>
+    <li><a href="#p-skills"         ><span class="ico">⚙️</span>역량</a></li>
+    <li><a href="#p-qual"           ><span class="ico">📜</span>자격</a></li>
+    <li><a href="#p-docs"           ><span class="ico">📁</span>서류</a></li>
+    <li><a href="#p-contact"        ><span class="ico">✉️</span>연락</a></li>
+  </ul>
+
+  <div class="sidebar-contact">
+    <a href="tel:010-5855-5282" title="전화">📞</a>
+    <a href="mailto:jsutal@naver.com" title="이메일">✉️</a>
+  </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<main id="main-scroll">
+
+  <!-- PAGE 1 · HERO -->
+  <section class="page" id="p-hero">
+    <div class="hero-inner">
+      <div class="hero-badge">SENIOR SAFETY MANAGER</div>
+      <h1>정 <span>성</span> 운</h1>
+      <div class="hero-sub">선임 안전관리자 · 산업안전기사</div>
+      <div class="hero-kpis">
+        <div class="kpi"><div class="num">4년+</div><div class="lbl">중대재해 ZERO<br>연속 달성</div></div>
+        <div class="kpi"><div class="num">134명</div><div class="lbl">일평균 근로자<br>안전관리</div></div>
+        <div class="kpi"><div class="num">SA1</div><div class="lbl">건설안전관리<br>최고등급 현장</div></div>
+        <div class="kpi"><div class="num">삼성</div><div class="lbl">그룹 발주현장<br>인증 수행 가능</div></div>
+      </div>
+      <div class="hero-cta">
+        <a href="tel:010-5855-5282">📞 010-5855-5282</a>
+        <a href="mailto:jsutal@naver.com">✉️ jsutal@naver.com</a>
+      </div>
+    </div>
+    <div class="scroll-arrow" onclick="goNext('p-hero')">▼</div>
+    <span class="page-num">01 / 09</span>
+  </section>
+
+  <!-- PAGE 2 · ACHIEVEMENTS -->
+  <section class="page" id="p-ach">
+    <div style="width:100%;max-width:1000px;margin:0 auto;">
+      <div class="ach-header">
+        <div class="en">KEY ACHIEVEMENTS</div>
+        <h2>핵심 성과 & 특장점</h2>
+      </div>
+      <div class="ach-grid">
+        <div class="ach-card"><div class="ach-icon">🏆</div><h3>중대재해 ZERO 달성</h3><p><span class="hi">4년 연속</span> 중대산업재해 무재해<br>무재해 공사 완료 이력</p></div>
+        <div class="ach-card"><div class="ach-icon">⭐</div><h3>건설안전관리 SA1등급</h3><p>나이스디앤비 <span class="hi">최고등급</span><br>취득 공사현장 안전관리 수행</p></div>
+        <div class="ach-card"><div class="ach-icon">🏗️</div><h3>삼성그룹 발주현장</h3><p>삼성물산인증제 수행가능<br><span class="hi">삼성E&A</span> 협력현장 안전관리</p></div>
+        <div class="ach-card"><div class="ach-icon">📋</div><h3>ISO 인증 대응</h3><p>ISO <span class="hi">45001 · 9001</span><br>현장접검 대응 완료</p></div>
+        <div class="ach-card"><div class="ach-icon">📣</div><h3>CEO 안전캠페인</h3><p><span class="hi">2026년</span> CEO 안전캠페인<br>실시현장 선정·운영</p></div>
+        <div class="ach-card"><div class="ach-icon">🔬</div><h3>글로벌 GMP 기준 현장</h3><p>바이오의약품 저장시설<br><span class="hi">GMP 환경</span> 안전관리 경험</p></div>
+      </div>
+    </div>
+    <span class="page-num">02 / 09</span>
+  </section>
+
+  <!-- PAGE 3 · PROJECT 1 -->
+  <section class="page" id="p-proj1">
+    <div class="proj-photo">
+      <img src="images/p2_site2.jpg" alt="목동KT 중장비 작업" style="object-position:center 40%;">
+      <div class="proj-photo-overlay">
+        <div class="proj-badge">목동KT · 은하수산업(주)</div>
+        <h2>목동KT<br>해체 / 토목 공사</h2>
+        <div class="scale">3,200평 | 지하 B1~B4</div>
+      </div>
+    </div>
+    <div class="proj-content">
+      <h3>목동KT 해체·토목 공사</h3>
+      <div class="proj-location">📍 서울 양천구 목동 924외 2필지 (목동KT타워) 지하층 해체공사</div>
+      <div class="tag-row">
+        <span class="tag">해체공사</span><span class="tag">토목공사</span>
+        <span class="tag">지하 B1~B4</span>
+        <span class="tag gold">SA1등급 현장</span>
+        <span class="tag gold">CEO 안전캠페인</span>
+        <span class="tag">ISO 45001 · 9001</span>
+      </div>
+      <ul class="chklist">
+        <li>굴착기해체·크레인·크람쉘 양중작업 계획 수립 및 안전감독</li>
+        <li>토목공사 추락·붕괴예방 작업계획서 작성 및 이행점검</li>
+        <li>중장비 배치 및 안전감시자 Daily Check Sheet 운영</li>
+        <li>공종별 작업허가서 발행·근로자 교육·서명확인 시스템 운영</li>
+        <li>일평균 134명 근로자 TBM(Tool Box Meeting) 실시</li>
+        <li>사고 발생 시 원인분석 · 3Why · 재발방지대책 수립 및 보고</li>
+        <li>산업안전보건관리비 예산 편성·집행·정산 관리</li>
+        <li>건설안전관리 SA1등급 취득 현장 (나이스디앤비) 관리 수행</li>
+        <li>2026년 CEO 안전캠페인 실시현장 운영</li>
+        <li>ISO 45001 · ISO 9001 현장접검 대응</li>
+      </ul>
+    </div>
+    <span class="page-num dark">03 / 09</span>
+  </section>
+
+  <!-- PAGE 4 · PROJECT 2 -->
+  <section class="page" id="p-proj2">
+    <div class="proj-content">
+      <h3>송도 삼성바이오로직스 P5 MS동<br>극저온 냉동창고 PLANT 공사</h3>
+      <div class="proj-location">📍 인천 송도 | 삼성E&A 발주 | 삼성물산인증제 현장</div>
+      <div class="tag-row">
+        <span class="tag">PLANT공사</span>
+        <span class="tag">극저온(-70℃~-20℃)</span>
+        <span class="tag">글로벌 GMP</span>
+        <span class="tag gold">삼성E&A</span>
+        <span class="tag gold">삼성물산인증제</span>
+        <span class="tag">밀폐공간 작업허가</span>
+        <span class="tag">S-PCM</span>
+      </div>
+      <ul class="chklist">
+        <li>글로벌 GMP 기준 적용 바이오의약품 저장시설 안전관리</li>
+        <li>-70℃~-20℃ 초저온 냉동창고 다공종 혼재작업 위험성 평가</li>
+        <li>밀폐공간 작업허가 운영 (천정작업 포함 · Permit to Work)</li>
+        <li>S-PCM 서류 작성 및 현장안전관리 주도적 수행</li>
+        <li>삼성E&A 안전관리 기준 준수 및 무재해 공사 완료</li>
+        <li>삼성물산인증제 기준 충족, 글로벌 GMP 환경 안전관리</li>
+      </ul>
+    </div>
+    <div class="proj-photo">
+      <img src="images/p1_plant.jpg" alt="삼성바이오 냉동창고 PLANT" style="object-position:center 50%;">
+      <div class="proj-photo-overlay">
+        <div class="proj-badge">삼성E&A · 삼성바이오로직스</div>
+        <h2>송도 P5 MS동<br>극저온 냉동창고 PLANT</h2>
+        <div class="scale">-70℃~-20℃ 초저온 설비공사</div>
+      </div>
+    </div>
+    <span class="page-num">04 / 09</span>
+  </section>
+
+  <!-- PAGE 5 · GALLERY -->
+  <section class="page" id="p-gallery">
+    <div class="gal-header">
+      <div class="en">SITE PHOTOS</div>
+      <h2>현장 사진</h2>
+    </div>
+    <div class="gal-grid">
+
+      <div class="gi span2r"
+           onclick="openLightbox('images/p19_aerial.jpg','목동KT 해체공사 — 드론 항공 전경 (지하 B1~B4, 3,200평)')">
+        <img src="images/p19_aerial.jpg" alt="드론 항공 전경" style="object-position:center 30%;">
+        <div class="gi-cap">목동KT 해체공사 — 드론 항공 전경</div>
+      </div>
+
+      <div class="gi" onclick="openLightbox('images/p2_rebar.jpg','지하층 토목공사 — 흙막이·철근 작업 및 크레인 양중')">
+        <img src="images/p2_rebar.jpg" alt="지하층 토목 철근" style="object-position:center 50%;">
+        <div class="gi-cap">지하층 토목 — 흙막이·철근 작업</div>
+      </div>
+
+      <div class="gi" onclick="openLightbox('images/p19_banner.jpg','CEO 안전캠페인 — 국토교통부 건설현장 추락사고 예방')">
+        <img src="images/p19_banner.jpg" alt="CEO 안전캠페인 현수막" style="object-position:center 55%;">
+        <div class="gi-cap">2026 CEO 안전캠페인</div>
+      </div>
+
+      <div class="gi" onclick="openLightbox('images/p2_site2.jpg','중장비 복합작업 — 굴착기·크레인 안전감독')">
+        <img src="images/p2_site2.jpg" alt="중장비 복합작업" style="object-position:center 40%;">
+        <div class="gi-cap">중장비 복합작업 현장</div>
+      </div>
+
+      <div class="gi" onclick="openLightbox('images/p1_plant.jpg','삼성바이오로직스 P5 — 극저온 냉동창고(-70℃~-20℃) PLANT공사')">
+        <img src="images/p1_plant.jpg" alt="냉동창고 PLANT" style="object-position:center 40%;">
+        <div class="gi-cap">삼성바이오 극저온 냉동창고 PLANT</div>
+      </div>
+
+      <div class="gi" onclick="openLightbox('images/site_meeting1.jpg','품질안전공정회의 Daily 실시 — 현장소장·안전관리자·협력사')">
+        <img src="images/site_meeting1.jpg" alt="품질안전공정회의" style="object-position:center 30%;">
+        <div class="gi-cap">품질안전공정회의 Daily</div>
+      </div>
+
+    </div>
+    <span class="page-num">05 / 09</span>
+  </section>
+
+  <!-- PAGE 6 · SKILLS -->
+  <section class="page" id="p-skills">
+    <div class="sk-header">
+      <div class="en">COMPETENCIES</div>
+      <h2>전문 역량</h2>
+    </div>
+    <div class="sk-grid">
+      <div class="sk-card"><h4>📊 위험성 평가</h4><div class="sk-tags"><span class="sk-tag">상시 위험성평가</span><span class="sk-tag">수시 위험성평가</span><span class="sk-tag">HAZARD 도출</span><span class="sk-tag">토사 되메움</span><span class="sk-tag">다공종 혼재작업</span><span class="sk-tag">감소대책 수립</span></div></div>
+      <div class="sk-card"><h4>📄 작업허가 관리</h4><div class="sk-tags"><span class="sk-tag">밀폐공간 허가</span><span class="sk-tag">고소작업 허가</span><span class="sk-tag">화기작업 허가</span><span class="sk-tag">가시설 허가</span><span class="sk-tag">LOTO 절차</span></div></div>
+      <div class="sk-card"><h4>🏗️ 중장비 안전</h4><div class="sk-tags"><span class="sk-tag">굴착기 해체작업</span><span class="sk-tag">크레인 양중계획</span><span class="sk-tag">크람쉘 작업</span><span class="sk-tag">일일장비 점검</span><span class="sk-tag">안전감시자 배치</span></div></div>
+      <div class="sk-card"><h4>📚 안전보건 서류</h4><div class="sk-tags"><span class="sk-tag">안전보건관리비</span><span class="sk-tag">안전관리계획서</span><span class="sk-tag">유해위험방지계획</span><span class="sk-tag">해체계획서</span><span class="sk-tag">MSDS</span><span class="sk-tag">비상대피 메뉴얼</span></div></div>
+      <div class="sk-card"><h4>👷 근로자 관리</h4><div class="sk-tags"><span class="sk-tag">TBM 실시·기록</span><span class="sk-tag">신규 채용교육</span><span class="sk-tag">관리감독자 교육</span><span class="sk-tag">건강진단 관리</span><span class="sk-tag">노사협의체</span></div></div>
+      <div class="sk-card"><h4>🚨 사고 대응</h4><div class="sk-tags"><span class="sk-tag">사고경위서</span><span class="sk-tag">3Why 원인분석</span><span class="sk-tag">재발방지대책</span><span class="sk-tag">비상대응 훈련</span></div></div>
+      <div class="sk-card"><h4>🔧 추락·붕괴 예방</h4><div class="sk-tags"><span class="sk-tag">시스템비계</span><span class="sk-tag">말비계·사다리</span><span class="sk-tag">단부·개구부 방호</span><span class="sk-tag">안전블럭 점검</span></div></div>
+      <div class="sk-card"><h4>📐 인증 대응</h4><div class="sk-tags"><span class="sk-tag">ISO 45001</span><span class="sk-tag">ISO 9001</span><span class="sk-tag">SA1등급 취득</span><span class="sk-tag">삼성물산인증제</span><span class="sk-tag">S-PCM</span></div></div>
+    </div>
+    <span class="page-num dark">06 / 09</span>
+  </section>
+
+  <!-- PAGE 7 · QUALIFICATIONS -->
+  <section class="page" id="p-qual">
+    <div class="ql-header">
+      <div class="en">CERTIFICATIONS & EDUCATION</div>
+      <h2>자격 & 교육</h2>
+    </div>
+    <div class="ql-grid">
+      <div class="ql-card"><div class="qtype">국가기술자격 · 고용노동부</div><h4>산업안전기사</h4><p>자격번호: 22220071194F<br>한국산업인력공단 이사장 발급<br>기술등급: 안전 초급</p><div class="issued">취득: 2022.09.02 | 갱신: 2025.04.08</div></div>
+      <div class="ql-card"><div class="qtype">안전관리자 선임</div><h4>안전관리자 선임계</h4><p>양천구 목동 924외 2필지<br>(목동KT타워) 지하층 해체공사<br>은하수산업(주) 대표이사 선임</p><div class="issued">선임일: 2025.05.20</div></div>
+      <div class="ql-card"><div class="qtype">안전보건교육 이수증</div><h4>안전관리자 신규교육<br>(건설업·집체교육)</h4><p>중대안전보건예방협회 협회장 발급<br>교육기간: 2025.06.16 ~ 06.20<br>교육시간: 34시간</p><div class="issued">수료: 2025.06.20</div></div>
+      <div class="ql-card"><div class="qtype">현장 인증</div><h4>삼성물산인증제</h4><p>삼성그룹 발주현장 수행 자격<br>삼성E&A 협력현장 안전관리 수행<br>글로벌 GMP 기준 현장 적용</p><div class="issued">삼성바이오로직스 P5 MS동 현장</div></div>
+      <div class="ql-card"><div class="qtype">건설안전관리 등급</div><h4>SA1등급 취득 현장</h4><p>나이스디앤비 평가 최고등급<br>건설안전관리 체계 최고 수준 인정<br>목동KT 해체공사 현장 취득</p><div class="issued">2026년</div></div>
+      <div class="ql-card"><div class="qtype">정기 교육</div><h4>관리감독자 정기교육</h4><p>월별 관리감독자 정기교육 실시<br>교육결과보고서 작성·제출<br>현장 전 근로자 교육 관리</p><div class="issued">정기 실시 (월별)</div></div>
+    </div>
+    <span class="page-num dark">07 / 09</span>
+  </section>
+
+  <!-- PAGE 8 · DOCUMENTS -->
+  <section class="page" id="p-docs">
+    <div class="dc-header">
+      <div class="en">SAFETY DOCUMENTS</div>
+      <h2>보유 안전보건서류</h2>
+      <p>현장에서 직접 작성·관리한 산업안전보건 문서 목록</p>
+    </div>
+    <div class="dc-grid">
+      <div class="dc-item"><div class="ico">📋</div><p>안전관리계획서</p></div>
+      <div class="dc-item"><div class="ico">⚠️</div><p>유해위험방지계획서</p></div>
+      <div class="dc-item"><div class="ico">🔨</div><p>해체계획서</p></div>
+      <div class="dc-item"><div class="ico">📊</div><p>위험성평가표<br>(상시/수시)</p></div>
+      <div class="dc-item"><div class="ico">🚧</div><p>작업계획서<br>(공종별)</p></div>
+      <div class="dc-item"><div class="ico">🔑</div><p>작업허가서<br>(Permit to Work)</p></div>
+      <div class="dc-item"><div class="ico">📅</div><p>일일안전보건일지<br>/ TBM</p></div>
+      <div class="dc-item"><div class="ico">🏗️</div><p>중장비 일일<br>점검체크시트</p></div>
+      <div class="dc-item"><div class="ico">💊</div><p>물질안전보건<br>자료(MSDS)</p></div>
+      <div class="dc-item"><div class="ico">🔥</div><p>위험물 관리대장</p></div>
+      <div class="dc-item"><div class="ico">🏃</div><p>비상대피 메뉴얼</p></div>
+      <div class="dc-item"><div class="ico">🩺</div><p>근로자 건강문진<br>및 질병이력</p></div>
+      <div class="dc-item"><div class="ico">📝</div><p>관리감독자 지정서</p></div>
+      <div class="dc-item"><div class="ico">🤝</div><p>노사협의체 서류</p></div>
+      <div class="dc-item"><div class="ico">💰</div><p>안전보건관리비<br>집행내역</p></div>
+      <div class="dc-item"><div class="ico">📰</div><p>사고경위서 &<br>재발방지대책</p></div>
+      <div class="dc-item"><div class="ico">✅</div><p>안전점검 결과표</p></div>
+      <div class="dc-item"><div class="ico">🎓</div><p>안전교육<br>결과보고서</p></div>
+      <div class="dc-item"><div class="ico">📁</div><p>품질안전공정<br>회의록</p></div>
+      <div class="dc-item"><div class="ico">🏥</div><p>배치전/후<br>건강진단 결과</p></div>
+    </div>
+    <span class="page-num">08 / 09</span>
+  </section>
+
+  <!-- PAGE 9 · CONTACT -->
+  <section class="page" id="p-contact">
+    <div class="ct-inner">
+      <h2>채용 문의 환영합니다</h2>
+      <p>중대재해 ZERO를 목표로<br>현장 안전을 주도적으로 이끌겠습니다.</p>
+      <div class="ct-links">
+        <a href="tel:010-5855-5282" class="ct-link"><span class="ci">📞</span><span>010-5855-5282</span></a>
+        <a href="mailto:jsutal@naver.com" class="ct-link"><span class="ci">✉️</span><span>jsutal@naver.com</span></a>
+      </div>
+      <div class="ct-copy">© 2026 정성운 · 선임 안전관리자 포트폴리오</div>
+    </div>
+    <span class="page-num">09 / 09</span>
+  </section>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLB(event)">
+  <span class="lb-close" onclick="closeLB()">✕</span>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
+<script>
+  /* ── 사이드바 active 처리 ── */
+  const mainEl = document.getElementById('main-scroll');
+  const pages  = document.querySelectorAll('.page');
+  const links  = document.querySelectorAll('.sidebar-nav a');
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+        const id = e.target.id;
+        links.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { root: mainEl, threshold: 0.5 });
+
+  pages.forEach(p => io.observe(p));
+
+  /* ── 사이드바 클릭 스크롤 ── */
+  links.forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior:'smooth' });
+    });
+  });
+
+  /* ── 화살표 다음 페이지 ── */
+  function goNext(currentId) {
+    const ids = Array.from(pages).map(p => p.id);
+    const idx = ids.indexOf(currentId);
+    if (idx < ids.length - 1) {
+      document.getElementById(ids[idx + 1]).scrollIntoView({ behavior:'smooth' });
+    }
+  }
+
+  /* ── 키보드 Page Up/Down ── */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+      e.preventDefault();
+      const active = document.querySelector('.sidebar-nav a.active');
+      const href = active?.getAttribute('href');
+      if (href) goNext(href.slice(1));
+    }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      e.preventDefault();
+      const ids = Array.from(pages).map(p => p.id);
+      const active = document.querySelector('.sidebar-nav a.active');
+      const idx = ids.indexOf(active?.getAttribute('href')?.slice(1));
+      if (idx > 0) document.getElementById(ids[idx - 1]).scrollIntoView({ behavior:'smooth' });
+    }
+    if (e.key === 'Escape') closeLB();
+  });
+
+  /* ── 라이트박스 ── */
+  function openLightbox(src, cap) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lb-cap').textContent = cap;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLB(e) {
+    const lb = document.getElementById('lightbox');
+    if (!e || e.target === lb || e.target.classList.contains('lb-close')) {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+</script>
+
+</body>
+</html>
