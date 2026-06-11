@@ -206,6 +206,13 @@
   .qual-card .detail { font-size: 0.83rem; color: var(--gray); line-height: 1.7; }
   .qual-card .issued { font-size: 0.78rem; color: #aaa; margin-top: 4px; }
 
+  /* ── CERT IMAGES ── */
+  .cert-row { display:flex; gap:20px; margin-top:36px; justify-content:center; flex-wrap:wrap; }
+  .cert-item { display:flex; flex-direction:column; align-items:center; gap:10px; flex:1; min-width:200px; max-width:300px; }
+  .cert-item img { width:100%; border-radius:10px; border:2px solid var(--border); box-shadow:0 4px 16px rgba(0,0,0,0.10); cursor:pointer; transition:transform 0.2s; }
+  .cert-item img:hover { transform:scale(1.03); }
+  .cert-item .clabel { font-size:0.78rem; color:var(--gray); font-weight:600; text-align:center; }
+
   /* ── DOCUMENTS ── */
   .documents { background: var(--primary); }
   .documents .section-header h2 { color: #fff; }
@@ -511,6 +518,20 @@
       <div class="qual-card"><div class="qtype">현장 인증</div><h3>삼성물산인증제</h3><div class="detail">삼성그룹 발주현장 수행 자격<br>삼성E&A 협력현장 안전관리 수행<br>글로벌 GMP 기준 현장 적용</div><div class="issued">삼성바이오로직스 P5 MS동 현장</div></div>
       <div class="qual-card"><div class="qtype">건설안전관리 등급</div><h3>SA1등급 취득 현장</h3><div class="detail">나이스디앤비 평가 최고등급<br>건설안전관리 체계 최고 수준 인정<br>목동KT 해체공사 현장 취득</div><div class="issued">2026년</div></div>
       <div class="qual-card"><div class="qtype">관리감독자 교육</div><h3>관리감독자 정기교육</h3><div class="detail">월별 관리감독자 정기교육 실시<br>교육결과보고서 작성·제출<br>현장 전 근로자 교육 관리</div><div class="issued">정기 실시 (월별)</div></div>
+    </div>
+    <div class="cert-row">
+      <div class="cert-item">
+        <img src="images/cert_seonim.jpg" alt="안전관리자 선임계" onclick="openLightbox('images/cert_seonim.jpg','안전관리자 선임계')">
+        <div class="clabel">안전관리자 선임계</div>
+      </div>
+      <div class="cert-item">
+        <img src="images/cert_license.jpg" alt="산업안전기사 자격증" onclick="openLightbox('images/cert_license.jpg','산업안전기사 국가기술자격증')">
+        <div class="clabel">산업안전기사 국가기술자격증</div>
+      </div>
+      <div class="cert-item">
+        <img src="images/cert_edu.jpg" alt="안전보건교육 이수증" onclick="openLightbox('images/cert_edu.jpg','안전관리자 신규교육 이수증')">
+        <div class="clabel">안전관리자 신규교육 이수증</div>
+      </div>
     </div>
   </div>
 </section>

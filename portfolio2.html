@@ -346,6 +346,11 @@
   .ql-card h4 { font-size:0.98rem; font-weight:800; color:var(--primary); line-height:1.4; }
   .ql-card p  { font-size:0.8rem; color:var(--gray); line-height:1.7; }
   .ql-card .issued { font-size:0.74rem; color:#bbb; margin-top:2px; }
+  .cert-row { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .cert-item { display:flex; flex-direction:column; align-items:center; gap:8px; flex:1; min-width:140px; max-width:220px; }
+  .cert-item img { width:100%; border-radius:8px; border:2px solid var(--border); box-shadow:0 3px 12px rgba(0,0,0,0.10); cursor:pointer; transition:transform 0.2s; }
+  .cert-item img:hover { transform:scale(1.04); }
+  .cert-item .clabel { font-size:0.72rem; color:var(--gray); font-weight:600; text-align:center; line-height:1.4; }
 
   /* ══════════════════════════════
      PAGE 8 — DOCUMENTS
@@ -661,6 +666,20 @@
       <div class="ql-card"><div class="qtype">현장 인증</div><h4>삼성물산인증제</h4><p>삼성그룹 발주현장 수행 자격<br>삼성E&A 협력현장 안전관리 수행<br>글로벌 GMP 기준 현장 적용</p><div class="issued">삼성바이오로직스 P5 MS동 현장</div></div>
       <div class="ql-card"><div class="qtype">건설안전관리 등급</div><h4>SA1등급 취득 현장</h4><p>나이스디앤비 평가 최고등급<br>건설안전관리 체계 최고 수준 인정<br>목동KT 해체공사 현장 취득</p><div class="issued">2026년</div></div>
       <div class="ql-card"><div class="qtype">정기 교육</div><h4>관리감독자 정기교육</h4><p>월별 관리감독자 정기교육 실시<br>교육결과보고서 작성·제출<br>현장 전 근로자 교육 관리</p><div class="issued">정기 실시 (월별)</div></div>
+    </div>
+    <div class="cert-row">
+      <div class="cert-item">
+        <img src="images/cert_seonim.jpg" alt="안전관리자 선임계" onclick="openLightbox('images/cert_seonim.jpg','안전관리자 선임계')">
+        <div class="clabel">안전관리자 선임계</div>
+      </div>
+      <div class="cert-item">
+        <img src="images/cert_license.jpg" alt="산업안전기사 자격증" onclick="openLightbox('images/cert_license.jpg','산업안전기사 국가기술자격증')">
+        <div class="clabel">산업안전기사 국가기술자격증</div>
+      </div>
+      <div class="cert-item">
+        <img src="images/cert_edu.jpg" alt="안전보건교육 이수증" onclick="openLightbox('images/cert_edu.jpg','안전관리자 신규교육 이수증')">
+        <div class="clabel">안전관리자 신규교육 이수증</div>
+      </div>
     </div>
     <span class="page-num dark">07 / 09</span>
   </section>
